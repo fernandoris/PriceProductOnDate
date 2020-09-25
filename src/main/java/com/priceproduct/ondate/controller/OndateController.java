@@ -40,10 +40,17 @@ public class OndateController {
     ){
 		log.info("Starting getPrice() method : date {} productId {} brandId {}",date.toString(),productId,brandId);
 		
+		ResponseEntity<OndateResponse> result;		
 		OndateResponse response = ondateService.getPrice(date,productId,brandId);
 		
+		if(response == null) {
+			result = ResponseEntity.noContent().build();
+		}else {
+			result = ResponseEntity.ok(response);
+		}
+		
 		log.info("Finishing getPrice() method");
-        return ResponseEntity.ok(response);
+        return result;
     
 	}
 

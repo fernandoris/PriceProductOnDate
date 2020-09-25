@@ -8,12 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "PRICES")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -38,7 +40,7 @@ public class Price implements Serializable {
 	@Column(name = "PRICE_LIST")
 	private Integer priceList;
 	
-	@Column(name = "PRODICT_ID")
+	@Column(name = "PRODUCT_ID")
 	private Integer productId;
 	
 	@Column(name = "PRIORITY")
