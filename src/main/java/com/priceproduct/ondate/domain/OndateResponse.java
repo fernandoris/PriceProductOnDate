@@ -25,5 +25,7 @@ public class OndateResponse implements Serializable {
 	private Date endDate;
 	
 	private Double price;
+	
+	private String curr;
 
 }
