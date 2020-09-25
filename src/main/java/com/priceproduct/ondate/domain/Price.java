@@ -1,9 +1,13 @@
 package com.priceproduct.ondate.domain;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,16 +17,23 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Price {
+public class Price implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 
 	@Column(name = "BRAND_ID")
 	private Integer brandId;
 	
 	@Column(name = "START_DATE")
-	private Timestamp startDate;
+	private Date startDate;
 	
 	@Column(name = "END_DATE")
-	private Timestamp endDate;
+	private Date endDate;
 	
 	@Column(name = "PRICE_LIST")
 	private Integer priceList;
