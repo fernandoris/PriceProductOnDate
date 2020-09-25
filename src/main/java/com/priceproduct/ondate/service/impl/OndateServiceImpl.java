@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.priceproduct.ondate.domain.OndateResponse;
@@ -28,8 +29,13 @@ public class OndateServiceImpl implements OndateService {
 	public OndateResponse getPrice(Date date, Integer productId, Integer brandId) {
 		
 		OndateResponse response = null;
-		
-		Optional<Price> priceOpt = ondateRepository.findFirstByProductIdAndBrandIdAndStartDateBeforeAndEndDateAfterOrderByPriorityDesc(productId,brandId,date,date);
+		Optional<Price> priceOpt;
+		try {
+			priceOpt = ondateRepository.findFirstByProductIdAndBrandIdAndStartDateBeforeAndEndDateAfterOrderByPriorityDesc(productId,brandId,date,date);			
+		}catch(DataAccessException e) {
+			log.error("Error in database query : {}",e.getMessage());
+			throw e;
+		}
 		
 		if(priceOpt.isPresent()) {			
 			Price price = priceOpt.get();
