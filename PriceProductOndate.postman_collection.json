@@ -105,11 +105,27 @@
 		},
 		{
 			"name": "Test3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7410bdc0-3b6a-4222-ba27-6e8e0a9b4403",
+						"exec": [
+							"pm.test(\"request at 21:00 of the 14th of the product 35455 for the brand 1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.price).to.eql(35.5);\r",
+							"    pm.expect(jsonData.curr).to.eql(\"EUR\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/prices?date=2020-06-14-10.00.34&date=2020-06-14-16.00.34&date=2020-06-14-21.00.34&date=2020-06-15-10.00.34&date=2020-06-16-21.00.34&productId=35455&brandId=1",
+					"raw": "http://localhost:8080/prices?date=2020-06-14-21.00.34&productId=35455&brandId=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -121,23 +137,7 @@
 					"query": [
 						{
 							"key": "date",
-							"value": "2020-06-14-10.00.34"
-						},
-						{
-							"key": "date",
-							"value": "2020-06-14-16.00.34"
-						},
-						{
-							"key": "date",
 							"value": "2020-06-14-21.00.34"
-						},
-						{
-							"key": "date",
-							"value": "2020-06-15-10.00.34"
-						},
-						{
-							"key": "date",
-							"value": "2020-06-16-21.00.34"
 						},
 						{
 							"key": "productId",
@@ -154,11 +154,27 @@
 		},
 		{
 			"name": "Test4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "100a45e7-f6c0-47cf-9eea-edfc1a00f8af",
+						"exec": [
+							"pm.test(\"request at 10:00 of the 15th of the product 35455 for the brand 1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.price).to.eql(30.5);\r",
+							"    pm.expect(jsonData.curr).to.eql(\"EUR\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/prices?date=2020-06-14-10.00.34&date=2020-06-14-16.00.34&date=2020-06-14-21.00.34&date=2020-06-15-10.00.34&date=2020-06-16-21.00.34&productId=35455&brandId=1",
+					"raw": "http://localhost:8080/prices?date=2020-06-15-10.00.34&productId=35455&brandId=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -170,20 +186,53 @@
 					"query": [
 						{
 							"key": "date",
-							"value": "2020-06-14-10.00.34"
-						},
-						{
-							"key": "date",
-							"value": "2020-06-14-16.00.34"
-						},
-						{
-							"key": "date",
-							"value": "2020-06-14-21.00.34"
-						},
-						{
-							"key": "date",
 							"value": "2020-06-15-10.00.34"
 						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b7a441c3-8cd3-4382-936c-ade59278e6c9",
+						"exec": [
+							"pm.test(\"request at 21:00 of the 16th of the product 35455 for the brand 1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.price).to.eql(38.95);\r",
+							"    pm.expect(jsonData.curr).to.eql(\"EUR\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/prices?date=2020-06-16-21.00.34&productId=35455&brandId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"prices"
+					],
+					"query": [
 						{
 							"key": "date",
 							"value": "2020-06-16-21.00.34"
@@ -202,12 +251,26 @@
 			"response": []
 		},
 		{
-			"name": "Test5",
+			"name": "Test6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f771fd99-fe39-4fdd-b3d0-bbac79dafbd1",
+						"exec": [
+							"pm.test(\"request at 10:00 of the June 14th of 2018 of the product 35455 for the brand 1\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/prices?date=2020-06-14-10.00.34&date=2020-06-14-16.00.34&date=2020-06-14-21.00.34&date=2020-06-15-10.00.34&date=2020-06-16-21.00.34&productId=35455&brandId=1",
+					"raw": "http://localhost:8080/prices?date=2018-06-16-21.00.34&productId=35455&brandId=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -219,23 +282,7 @@
 					"query": [
 						{
 							"key": "date",
-							"value": "2020-06-14-10.00.34"
-						},
-						{
-							"key": "date",
-							"value": "2020-06-14-16.00.34"
-						},
-						{
-							"key": "date",
-							"value": "2020-06-14-21.00.34"
-						},
-						{
-							"key": "date",
-							"value": "2020-06-15-10.00.34"
-						},
-						{
-							"key": "date",
-							"value": "2020-06-16-21.00.34"
+							"value": "2018-06-16-21.00.34"
 						},
 						{
 							"key": "productId",
