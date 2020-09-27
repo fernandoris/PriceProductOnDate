@@ -133,5 +133,20 @@ public class OndateIntegrationTest {
  
         log.info("response: " + response);
     }
+	
+	@Test
+    public void pricesTest6() throws Exception {
+		
+		String date = "2018-06-16-21.00.00";		
+		
+        String response = mockMvc.perform(get("/prices")
+        		.param("date", date)
+        		.param("productId", productId)
+        		.param("brandId", brandId))
+                .andExpect(status().is(HttpStatus.NO_CONTENT.value()))                
+                .andReturn().getResponse().getContentAsString();
+ 
+        log.info("response: " + response);
+    }
 
 }
