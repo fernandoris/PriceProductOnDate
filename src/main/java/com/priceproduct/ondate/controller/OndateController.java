@@ -18,7 +18,6 @@ import com.priceproduct.ondate.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping(path = "/prices")
 @Slf4j
 public class OndateController {
 	
@@ -32,7 +31,7 @@ public class OndateController {
 	 * @param brandId
 	 * @return
 	 */
-	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path="/prices",produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OndateResponse> getPrice(
     		@RequestParam(required = true) @DateTimeFormat(pattern = Constants.DATE_REQUEST_PATTERN) Date  date, 
     		@RequestParam(required = true) Integer productId,
