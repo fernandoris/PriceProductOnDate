@@ -26,9 +26,10 @@ public class OndateServiceImpl implements OndateService {
 	OndateMapper ondateMapper;
 	
 	@Override	
-	public OndateResponse getPrice(Date date, Integer productId, Integer brandId) {
-		
+	public Optional<OndateResponse> getPrice(Date date, Integer productId, Integer brandId) {
+
 		OndateResponse response = null;
+
 		Optional<Price> priceOpt;
 		try {
 			priceOpt = ondateRepository.findFirstByProductIdAndBrandIdAndStartDateBeforeAndEndDateAfterOrderByPriorityDesc(productId,brandId,date,date);			
@@ -41,8 +42,9 @@ public class OndateServiceImpl implements OndateService {
 			Price price = priceOpt.get();
 			response = ondateMapper.priceToOndateResponse(price);
 		}
-		
-		return response;
+		Optional<OndateResponse> responseOpt = Optional.ofNullable(response);
+
+		return responseOpt;
 	}
 
 }

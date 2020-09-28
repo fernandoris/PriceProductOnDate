@@ -66,8 +66,8 @@
           "204": {
             "description": "Successfully processed request no returning content"
           },
-          "400": {
-            "description": "Malformed request syntax or has a unsuccessfully validation"
+          "404": {
+            "description": "Price not found"
           },
           "500": {
             "description": "Unexpected error has occur"

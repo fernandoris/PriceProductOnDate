@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "59916b44-4571-46c3-a0a0-fd7ba79bcda1",
+		"_postman_id": "569c8e08-f342-49f4-b98d-0cc07f61abef",
 		"name": "PriceProductOndate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -259,7 +259,7 @@
 						"id": "f771fd99-fe39-4fdd-b3d0-bbac79dafbd1",
 						"exec": [
 							"pm.test(\"request at 10:00 of the June 14th of 2018 of the product 35455 for the brand 1\", function () {\r",
-							"    pm.response.to.have.status(204);\r",
+							"    pm.response.to.have.status(404);\r",
 							"});"
 						],
 						"type": "text/javascript"

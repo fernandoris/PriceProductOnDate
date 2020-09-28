@@ -1,6 +1,7 @@
 package com.priceproduct.ondate.service;
 
 import java.util.Date;
+import java.util.Optional;
 
 import com.priceproduct.ondate.domain.OndateResponse;
 
@@ -13,6 +14,6 @@ public interface OndateService {
 	 * @param brandId
 	 * @return
 	 */
-	OndateResponse getPrice(Date date, Integer productId, Integer brandId);
+	Optional<OndateResponse> getPrice(Date date, Integer productId, Integer brandId);
 
 }

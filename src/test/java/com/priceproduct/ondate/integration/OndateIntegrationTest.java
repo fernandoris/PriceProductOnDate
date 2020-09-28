@@ -143,7 +143,7 @@ public class OndateIntegrationTest {
         		.param("date", date)
         		.param("productId", productId)
         		.param("brandId", brandId))
-                .andExpect(status().is(HttpStatus.NO_CONTENT.value()))                
+                .andExpect(status().is(HttpStatus.NOT_FOUND.value()))
                 .andReturn().getResponse().getContentAsString();
  
         log.info("response: " + response);

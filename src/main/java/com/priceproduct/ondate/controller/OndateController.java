@@ -1,6 +1,7 @@
 package com.priceproduct.ondate.controller;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,18 +39,11 @@ public class OndateController {
 			@RequestParam(required = true) Integer brandId 
     ){
 		log.info("Starting getPrice() method : date {} productId {} brandId {}",date.toString(),productId,brandId);
-		
-		ResponseEntity<OndateResponse> result;		
-		OndateResponse response = ondateService.getPrice(date,productId,brandId);
-		
-		if(response == null) {
-			result = ResponseEntity.noContent().build();
-		}else {
-			result = ResponseEntity.ok(response);
-		}
+
+		Optional<OndateResponse> result = ondateService.getPrice(date, productId, brandId);
 		
 		log.info("Finishing getPrice() method");
-        return result;
+        return ResponseEntity.of( result );
     
 	}
 
