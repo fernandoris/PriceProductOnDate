@@ -1,29 +1,28 @@
-package com.priceproduct.ondate.controller;
+package com.priceproductondate.prices.application.controller;
 
 import java.util.Date;
 import java.util.Optional;
 
+import com.priceproductondate.prices.domain.PricesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.priceproduct.ondate.domain.OndateResponse;
-import com.priceproduct.ondate.service.OndateService;
-import com.priceproduct.ondate.utils.Constants;
+import com.priceproductondate.prices.domain.service.PricesService;
+import com.priceproductondate.prices.domain.utils.Constants;
 
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-public class OndateController {
+public class PricesController {
 	
 	@Autowired
-	OndateService ondateService;
+	PricesService pricesService;
 	
 	/**
 	 * Endpoint for price query
@@ -33,14 +32,14 @@ public class OndateController {
 	 * @return
 	 */
 	@GetMapping(path="/prices",produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OndateResponse> getPrice(
+    public ResponseEntity<PricesResponse> getPrice(
     		@RequestParam(required = true) @DateTimeFormat(pattern = Constants.DATE_REQUEST_PATTERN) Date  date, 
     		@RequestParam(required = true) Integer productId,
 			@RequestParam(required = true) Integer brandId 
     ){
 		log.info("Starting getPrice() method : date {} productId {} brandId {}",date.toString(),productId,brandId);
 
-		Optional<OndateResponse> result = ondateService.getPrice(date, productId, brandId);
+		Optional<PricesResponse> result = pricesService.getPrice(date, productId, brandId);
 		
 		log.info("Finishing getPrice() method");
         return ResponseEntity.of( result );

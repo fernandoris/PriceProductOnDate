@@ -1,4 +1,4 @@
-package com.priceproduct.ondate.domain;
+package com.priceproductondate.prices.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class OndateResponse implements Serializable {
+public class PricesResponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

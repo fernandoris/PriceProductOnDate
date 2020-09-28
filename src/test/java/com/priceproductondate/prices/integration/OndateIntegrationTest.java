@@ -1,10 +1,7 @@
-package com.priceproduct.ondate.integration;
+package com.priceproductondate.prices.integration;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import com.priceproductondate.prices.domain.mapper.PricesMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,13 +15,14 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.priceproduct.ondate.mapper.OndateMapper;
-
-import lombok.extern.slf4j.Slf4j;
+import static org.hamcrest.CoreMatchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {OndateMapper.class},properties = { "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect" })
-@ComponentScan("com.priceproduct.ondate")
+@SpringBootTest(classes = {PricesMapper.class},properties = { "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect" })
+@ComponentScan("com.priceproductondate.prices")
 @Sql("/data.sql")
 @AutoConfigureTestDatabase
 @AutoConfigureMockMvc

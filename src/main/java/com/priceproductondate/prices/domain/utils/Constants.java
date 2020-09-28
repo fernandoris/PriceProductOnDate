@@ -1,4 +1,4 @@
-package com.priceproduct.ondate.utils;
+package com.priceproductondate.prices.domain.utils;
 
 public final class Constants {
 

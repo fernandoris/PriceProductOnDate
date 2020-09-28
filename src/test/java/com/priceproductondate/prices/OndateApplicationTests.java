@@ -1,11 +1,10 @@
-package com.priceproduct.ondate;
+package com.priceproductondate.prices;
 
+import com.priceproductondate.prices.domain.mapper.PricesMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.priceproduct.ondate.mapper.OndateMapper;
-
-@SpringBootTest(classes = {OndateMapper.class})
+@SpringBootTest(classes = {PricesMapper.class})
 class OndateApplicationTests {
 
 	@Test

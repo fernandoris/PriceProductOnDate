@@ -1,4 +1,4 @@
-package com.priceproduct.ondate;
+package com.priceproductondate.prices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

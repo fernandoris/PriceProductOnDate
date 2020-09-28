@@ -1,37 +1,36 @@
-package com.priceproduct.ondate.service.impl;
+package com.priceproductondate.prices.domain.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
+import com.priceproductondate.prices.domain.Price;
+import com.priceproductondate.prices.domain.PricesRepository;
+import com.priceproductondate.prices.domain.PricesResponse;
+import com.priceproductondate.prices.domain.mapper.PricesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Service;
 
-import com.priceproduct.ondate.domain.OndateResponse;
-import com.priceproduct.ondate.domain.Price;
-import com.priceproduct.ondate.mapper.OndateMapper;
-import com.priceproduct.ondate.repository.OndateRepository;
-import com.priceproduct.ondate.service.OndateService;
+import com.priceproductondate.prices.domain.service.PricesService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
-public class OndateServiceImpl implements OndateService {
-	
+public class PricesServiceImpl implements PricesService {
+
 	@Autowired
-	OndateRepository ondateRepository;
-	
-	@Autowired
-	OndateMapper ondateMapper;
+	PricesMapper pricesMapper;
+
+	private final PricesRepository pricesRepository;
+
+	public PricesServiceImpl(PricesRepository pricesRepository) {
+		this.pricesRepository = pricesRepository;
+	}
 
 	@Override
-	public Optional<OndateResponse> getPrice(Date date, Integer productId, Integer brandId) {
-		List<Price> priceList = ondateRepository.findAll();
+	public Optional<PricesResponse> getPrice(Date date, Integer productId, Integer brandId) {
+		List<Price> priceList = pricesRepository.findAll();
 
 		List<Predicate<Price>> allPredicates = new ArrayList<>();
 		allPredicates.add(p -> p.getProductId().equals(productId));
@@ -44,7 +43,7 @@ public class OndateServiceImpl implements OndateService {
 				.sorted((p1, p2) -> p2.getPriority().compareTo(p1.getPriority()))
 				.findFirst();
 
-		OndateResponse result = ondateMapper.priceToOndateResponse(price.orElse(null));
+		PricesResponse result = pricesMapper.priceToPricesResponse(price.orElse(null));
 
 		return Optional.ofNullable(result);
 	}

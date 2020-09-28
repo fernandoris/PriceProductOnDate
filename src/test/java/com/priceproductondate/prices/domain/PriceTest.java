@@ -1,4 +1,4 @@
-package com.priceproduct.ondate.domain;
+package com.priceproductondate.prices.domain;
 
 
 import static org.junit.Assert.assertEquals;
@@ -7,13 +7,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.junit.Assert;
+import com.priceproductondate.prices.domain.utils.Constants;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import com.priceproduct.ondate.utils.Constants;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PriceTest {

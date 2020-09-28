@@ -1,4 +1,4 @@
-package com.priceproduct.ondate.domain;
+package com.priceproductondate.prices.infrastructure;
 
 import java.io.Serializable;
 import java.util.Date;
