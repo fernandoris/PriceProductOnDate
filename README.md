@@ -9,6 +9,8 @@ To run the microservice you must first make sure that your port 8080 is not in u
 ```shell
 $docker-compose up
 ```
+## Swagger
+You can consult the swagger in the file "swagger.json" or in SwaggerHub https://app.swaggerhub.com/apis/fernandoris/PriceProductOnDate/1.0.0
 ## Tests 
 Once the microservice is up, to run the tests you can import the postman collection in the file `PriceProductOndate.postman_collection.json` or execute the following commands in the console
 

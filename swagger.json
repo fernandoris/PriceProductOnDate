@@ -1,0 +1,119 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Microservice to consult prices",
+    "version": "1.0.0",
+    "title": "PriceProductOndate API"
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/fernandoris/PriceProductOnDate/1.0.0",
+  "tags": [
+    {
+      "name": "PRODUCTS",
+      "description": "Calls for products prices"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/prices": {
+      "get": {
+        "tags": [
+          "PRODUCTS"
+        ],
+        "summary": "searches inventory",
+        "description": "Passing the correct parameters we can consult the price of a product by its brand on a given date\n",
+        "operationId": "searchInventory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Pass the date for which you want to consult the price in the following format yyyy-MM-dd-HH.mm.ss",
+            "required": true,
+            "type": "string",
+            "pattern": "yyyy-MM-dd-HH.mm.ss"
+          },
+          {
+            "name": "productId",
+            "in": "query",
+            "description": "Identifier of the product to be consulted",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "format": "int32"
+          },
+          {
+            "name": "brandId",
+            "in": "query",
+            "description": "Identifier of the brand to be consulted",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "search price matching criteria",
+            "schema": {
+              "$ref": "#/definitions/Price"
+            }
+          },
+          "204": {
+            "description": "Successfully processed request no returning content"
+          },
+          "400": {
+            "description": "Malformed request syntax or has a unsuccessfully validation"
+          },
+          "500": {
+            "description": "Unexpected error has occur"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Price": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "integer",
+          "example": 35455
+        },
+        "brandId": {
+          "type": "integer",
+          "example": 1
+        },
+        "priceList": {
+          "type": "integer",
+          "example": 1
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2020-06-14T00:00:00.000+00:00"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2020-12-31T23:59:59.000+00:00"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "example": 35.5
+        },
+        "curr": {
+          "type": "string",
+          "example": "EUR",
+          "minLength": 3,
+          "maxLength": 3
+        }
+      }
+    }
+  }
+}
