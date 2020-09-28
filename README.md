@@ -7,8 +7,9 @@
 ## How to start
 To run the microservice you must first make sure that your port 8080 is not in use. Then navigate in the console to the project folder and launch the following command.
 ```shell
-$docker-compose up
+$mvn clean install && docker-compose up
 ```
+You can find the coverage report in ./target/site/jacoco/index.html
 ## Swagger
 You can consult the swagger in the file "swagger.json" or in SwaggerHub https://app.swaggerhub.com/apis/fernandoris/PriceProductOnDate/1.0.0
 ## Tests 
