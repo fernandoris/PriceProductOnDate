@@ -3,6 +3,7 @@ package com.priceproductondate.prices.infrastructure.controller;
 import java.util.Date;
 import java.util.Optional;
 
+import com.priceproductondate.prices.application.GetPriceUseCase;
 import com.priceproductondate.prices.domain.PricesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.priceproductondate.prices.domain.service.PricesService;
 import com.priceproductondate.prices.domain.utils.Constants;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PricesController {
 	
 	@Autowired
-	PricesService pricesService;
+	GetPriceUseCase getPriceUseCase;
 	
 	/**
 	 * Endpoint for price query
@@ -39,7 +39,7 @@ public class PricesController {
     ){
 		log.info("Starting getPrice() method : date {} productId {} brandId {}",date.toString(),productId,brandId);
 
-		Optional<PricesResponse> result = pricesService.getPrice(date, productId, brandId);
+		Optional<PricesResponse> result = getPriceUseCase.getPrice(date, productId, brandId);
 		
 		log.info("Finishing getPrice() method");
         return ResponseEntity.of( result );

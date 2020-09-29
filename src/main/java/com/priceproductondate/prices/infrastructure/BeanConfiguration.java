@@ -1,5 +1,7 @@
 package com.priceproductondate.prices.infrastructure;
 
+import com.priceproductondate.prices.application.GetPriceUseCase;
+import com.priceproductondate.prices.application.GetPriceUseCaseImpl;
 import com.priceproductondate.prices.domain.PricesRepository;
 import com.priceproductondate.prices.domain.service.PricesService;
 import com.priceproductondate.prices.domain.service.impl.PricesServiceImpl;
@@ -15,5 +17,10 @@ public class BeanConfiguration {
     PricesService pricesService(PricesRepository pricesRepository){
         return new PricesServiceImpl(pricesRepository);
     }
+
+    @Bean
+    @Autowired
+    GetPriceUseCase pricesUsesCases(PricesService pricesService) { return new GetPriceUseCaseImpl(pricesService); }
+
 
 }
