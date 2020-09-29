@@ -1,4 +1,4 @@
-package com.priceproductondate.prices.application.controller;
+package com.priceproductondate.prices.infrastructure.controller;
 
 import java.util.Date;
 import java.util.Optional;
