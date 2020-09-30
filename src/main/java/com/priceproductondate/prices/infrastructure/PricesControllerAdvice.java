@@ -1,5 +1,6 @@
 package com.priceproductondate.prices.infrastructure;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class PricesControllerAdvice {
 
     @ExceptionHandler(Throwable.class)
+    @ApiResponse(responseCode = "500",description = "Unexpected error")
     public ResponseEntity<Problem> problem(final Throwable e) {
 
         String message = e.getMessage();
@@ -29,6 +31,7 @@ public class PricesControllerAdvice {
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ApiResponse(responseCode = "400",description = "Bad request")
     public ResponseEntity<ErrorMessage> handleIllegalArgumentException(MethodArgumentTypeMismatchException ex) {
 
         Throwable mostSpecificCause = ex.getCause();
@@ -44,6 +47,7 @@ public class PricesControllerAdvice {
     }
 
     @ExceptionHandler(PriceNotFoundException.class)
+    @ApiResponse(responseCode = "404",description = "Price not found")
     public ResponseEntity<Problem> handlePriceNotFound(PriceNotFoundException ex) {
 
         String message = ex.getMessage();
