@@ -9,8 +9,18 @@ To run the microservice you must first make sure that your port 8080 is not in u
 ```shell
 $mvn clean install && docker-compose up
 ```
-## Coverage report
-You can find the coverage report in ./target/site/jacoco/index.html
+## JUnit and Coverage report
+After executing the command indicated in the previous section, all the tests will have been executed and the coverage report generated.
+However, if we wish to generate it again, we would only have to use the following command.
+```shell
+$mvn verify
+```
+To access the coverage report you only have to access the folder 
+```shell
+./target/site/jacoco/index.html
+```
+and open the file index.html with the browser of your preference.
+![alt text](https://github.com/fernandoris/PriceProductOnDate/blob/master/example.png?raw=true)
 ## Swagger
 You can consult the swagger in http://localhost:8080/swagger-ui.html
 , the file "swagger.json" or in SwaggerHub https://app.swaggerhub.com/apis/fernandoris/PriceProductOnDate/1.0.0
