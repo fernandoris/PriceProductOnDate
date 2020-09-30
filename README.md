@@ -19,7 +19,7 @@ To access the coverage report you only have to access the folder
 ```shell
 ./target/site/jacoco/index.html
 ```
-and open the file index.html with the browser of your preference.
+and open the file index.html with the browser of your preference.  
 ![alt text](https://github.com/fernandoris/PriceProductOnDate/blob/master/example.png?raw=true)
 ## Swagger
 You can consult the swagger in http://localhost:8080/swagger-ui.html
