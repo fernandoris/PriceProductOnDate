@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.priceproductondate.prices.application.GetPriceUseCase;
 import com.priceproductondate.prices.domain.PricesResponse;
+import com.priceproductondate.prices.infrastructure.PriceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
@@ -39,10 +40,10 @@ public class PricesController {
     ){
 		log.info("Starting getPrice() method : date {} productId {} brandId {}",date.toString(),productId,brandId);
 
-		Optional<PricesResponse> result = getPriceUseCase.getPrice(date, productId, brandId);
-		
+		Optional<PricesResponse> resultOpt = getPriceUseCase.getPrice(date, productId, brandId);
+		PricesResponse result = resultOpt.orElseThrow(() -> new PriceNotFoundException("Price not found"));
 		log.info("Finishing getPrice() method");
-        return ResponseEntity.of( result );
+        return ResponseEntity.ok(result);
     
 	}
 
