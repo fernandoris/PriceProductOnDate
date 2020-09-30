@@ -1,16 +1,13 @@
 package com.priceproductondate.prices.infrastructure;
 
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.UUID;
 
@@ -20,7 +17,6 @@ import java.util.UUID;
 public class PricesControllerAdvice {
 
     @ExceptionHandler(Throwable.class)
-    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR,reason="Unexpected error")
     public ResponseEntity<Problem> problem(final Throwable e) {
 
         String message = e.getMessage();
@@ -32,11 +28,10 @@ public class PricesControllerAdvice {
 
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST,reason="Bad request")
-    public ResponseEntity<ErrorMessage> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ErrorMessage> handleIllegalArgumentException(MethodArgumentTypeMismatchException ex) {
 
-        Throwable mostSpecificCause = ex.getMostSpecificCause();
+        Throwable mostSpecificCause = ex.getCause();
         ErrorMessage errorMessage;
         if (mostSpecificCause != null) {
             String exceptionName = mostSpecificCause.getClass().getName();
@@ -49,7 +44,6 @@ public class PricesControllerAdvice {
     }
 
     @ExceptionHandler(PriceNotFoundException.class)
-    @ResponseStatus(code = HttpStatus.NOT_FOUND,reason="Price not found")
     public ResponseEntity<Problem> handlePriceNotFound(PriceNotFoundException ex) {
 
         String message = ex.getMessage();
@@ -57,7 +51,7 @@ public class PricesControllerAdvice {
         String logRef = uuid.toString();
         log.error("logRef=" + logRef, message, ex);
 
-        return new ResponseEntity<>(new Problem(logRef, message), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(new Problem(logRef, message),HttpStatus.NOT_FOUND);
 
     }
 }

@@ -296,6 +296,53 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Test7",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf193c96-8123-406e-8d2a-92bc8dad2b2b",
+						"exec": [
+							"pm.test(\"request at 10:00 of the June 14th of 2018 of the product 35455 for the brand 1\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/prices?date=2018&productId=35455&brandId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"prices"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2018"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

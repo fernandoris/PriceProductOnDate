@@ -147,4 +147,34 @@ public class OndateIntegrationTest {
         log.info("response: " + response);
     }
 
+	@Test
+	public void pricesTest7() throws Exception {
+
+		String date = "";
+
+		String response = mockMvc.perform(get("/prices")
+				.param("date", date)
+				.param("productId", productId)
+				.param("brandId", brandId))
+				.andExpect(status().is(HttpStatus.INTERNAL_SERVER_ERROR.value()))
+				.andReturn().getResponse().getContentAsString();
+
+		log.info("response: " + response);
+	}
+
+	@Test
+	public void pricesTest8() throws Exception {
+
+		String date = "2018";
+
+		String response = mockMvc.perform(get("/prices")
+				.param("date", date)
+				.param("productId", productId)
+				.param("brandId", brandId))
+				.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
+				.andReturn().getResponse().getContentAsString();
+
+		log.info("response: " + response);
+	}
+
 }

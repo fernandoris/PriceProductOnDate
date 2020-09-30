@@ -18,6 +18,8 @@ import com.priceproductondate.prices.domain.utils.Constants;
 
 import lombok.extern.slf4j.Slf4j;
 
+import javax.validation.constraints.NotNull;
+
 @RestController
 @Slf4j
 public class PricesController {
@@ -34,7 +36,7 @@ public class PricesController {
 	 */
 	@GetMapping(path="/prices",produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PricesResponse> getPrice(
-    		@RequestParam(required = true) @DateTimeFormat(pattern = Constants.DATE_REQUEST_PATTERN) Date  date, 
+    		@RequestParam(required = true) @NotNull @DateTimeFormat(pattern = Constants.DATE_REQUEST_PATTERN) Date  date,
     		@RequestParam(required = true) Integer productId,
 			@RequestParam(required = true) Integer brandId 
     ){

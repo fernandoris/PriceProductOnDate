@@ -1,10 +1,6 @@
 package com.priceproductondate.prices.infrastructure;
 
-import org.springframework.core.NestedRuntimeException;
-
-import java.util.function.Supplier;
-
-public class PriceNotFoundException extends NestedRuntimeException {
+public class PriceNotFoundException extends RuntimeException {
 
     public PriceNotFoundException(String msg) {
         super(msg);
